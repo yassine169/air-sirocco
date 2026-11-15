@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: stg_air_quality
+    columns:
+      - name: air_id
+        tests: [unique, not_null]      # prouve l'absence de doublons
+      - name: city
+        tests:
+          - not_null
+          - relationships: {arguments: {to: ref('cities'), field: city}}
+      - name: measured_at
+        tests: [not_null]
+
+  - name: stg_weather
+    columns:
+      - name: weather_id
+        tests: [unique, not_null]
+      - name: city
+        tests:
+          - not_null
+          - relationships: {arguments: {to: ref('cities'), field: city}}

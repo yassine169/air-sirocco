@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: dim_city
+    columns:
+      - name: city
+        tests: [unique, not_null]
+
+  - name: fct_air_hourly
+    columns:
+      - name: city
+        tests: [not_null]
+
+  - name: fct_daily_exceedances
+    columns:
+      - name: daily_id
+        tests: [unique, not_null]
+      - name: hours_measured
+        tests: [not_null]
