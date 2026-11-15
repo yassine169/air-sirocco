@@ -1,0 +1,12 @@
+# Contrat de données : Open-Meteo Forecast API
+source: open-meteo-forecast
+owner: equipe-air-sirocco
+version: 1
+primary_key: [city, time]
+columns:
+  city:                 {type: str,   required: true}
+  time:                 {type: str,   required: true}
+  temperature_2m:       {type: float, required: false, min: -30, max: 60}
+  relative_humidity_2m: {type: float, required: false, min: 0,   max: 100}
+  wind_speed_10m:       {type: float, required: false, min: 0,   max: 250}
+  wind_direction_10m:   {type: float, required: false, min: 0,   max: 360}

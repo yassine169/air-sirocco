@@ -1,0 +1,13 @@
+# Contrat de données : Open-Meteo Air Quality API
+source: open-meteo-air-quality
+owner: equipe-air-sirocco
+version: 1
+primary_key: [city, time]
+columns:
+  city:             {type: str,   required: true}
+  time:             {type: str,   required: true}
+  pm2_5:            {type: float, required: false, min: 0, max: 1000}
+  pm10:             {type: float, required: false, min: 0, max: 2000}
+  dust:             {type: float, required: false, min: 0, max: 5000}
+  nitrogen_dioxide: {type: float, required: false, min: 0, max: 1000}
+  ozone:            {type: float, required: false, min: 0, max: 1000}
