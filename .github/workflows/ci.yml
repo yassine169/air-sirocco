@@ -1,0 +1,32 @@
+# Intégration continue : se lance à chaque pull request vers main.
+# Si une étape échoue, la pull request devient rouge et ne peut pas être fusionnée.
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+    env:
+      DUCKDB_PATH: ${{ github.workspace }}/data/warehouse.duckdb
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v4
+
+      - name: Installer Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Installer les dépendances
+        run: pip install -r requirements.txt
+
+      - name: Tests unitaires des contrats (pytest)
+        run: pytest -q
+
+      - name: Pipeline complet (ingestion + dbt + santé)
+        run: sh run_pipeline.sh
