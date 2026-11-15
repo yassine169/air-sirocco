@@ -1,0 +1,17 @@
+name: air_sirocco
+version: "1.0.0"
+profile: air_sirocco
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+
+models:
+  air_sirocco:
+    staging:
+      +schema: staging
+      +materialized: view
+    marts:
+      +schema: marts
+      +materialized: table

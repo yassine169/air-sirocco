@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: raw
+    loaded_at_field: "cast(ingested_at as timestamp)"
+    freshness:                       # observabilité : données trop vieilles ?
+      warn_after: {count: 26, period: hour}
+      error_after: {count: 50, period: hour}
+    tables:
+      - name: air_quality
+      - name: weather
